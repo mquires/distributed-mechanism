@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:13.20
+    volumes:
+      - ./ops/docker/postrgres/out:/var/lib/postgresql/data:z
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: distributed-services
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5446:5432
+    networks:
+      - distributed-services
+
+networks:
+  distributed-services:
+    driver: bridge
